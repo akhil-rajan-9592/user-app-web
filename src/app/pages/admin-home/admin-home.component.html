@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row bg-info rounded-md px-5">
+    <div class="col-12 d-flex justify-content-around bd-highlight mb-3 align-items-center mt-2">
+      <div class="h1" *ngIf="user">
+        <h1>Welcome <strong>{{user.name | titlecase}}</strong></h1>
+      </div>
+      <div class="button">
+        <button [routerLink]="['/']" class="btn btn-primary">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row px-5 py-3 d-flex justify-content-center">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2>Admin Dashboard</h2>
+        </div>
+        <div class="form-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search Here...">
+        </div>
+      </div>
+      <div class="table-responsive" *ngIf="allfiles">
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User Name</th>
+              <th scope="col">File Name</th>
+              <th scope="col">File</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of (allfiles | searchByName: searchText), let i = index" >
+              <th scope="row"> {{i + 1}} </th>
+              <td>{{file.userid.name | titlecase}}</td>
+              <td>{{file.filename | titlecase}}</td>
+              <td>
+                <a [href]="file.pdffile" [download]="file.pdffile">
+                  {{file.filename}} <i class="bi bi-download"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row" *ngIf="!allfiles">
+        <div class="col-12">
+          <h2>There is no Files</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

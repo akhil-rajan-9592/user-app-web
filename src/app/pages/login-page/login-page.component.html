@@ -1,0 +1,85 @@
+<section class="vh-100 mb-5" style="background-color: #508bfc;">
+  <div class="container py-5 vh-100">
+    <div class="row d-flex justify-content-center align-items-center h-100 mb-5 py-5">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5 mt-5 mb-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+            <h3 class="mb-5">Sign in</h3>
+            <form [formGroup]="loginForm">
+              <div class="form-group mb-5">
+                <label for="email" class="form-label">Mail</label>
+                <input formControlName="mail" name="mail" id="email" type="email" class="form-control">
+                <div class="invalid" *ngIf="loginForm.get('mail').invalid && formsubmit2" style="color: #fd3550;">Please Enter Your Mail Address</div>
+              </div>
+              <div class="form-group mb-5">
+                <label for="loginpassword" class="form-label">Password</label>
+                <input formControlName="password" name="password" id="loginpassword" type="password" class="form-control">
+                <div class="invalid" *ngIf="loginForm.get('password').invalid && formsubmit2" style="color: #fd3550;">Please Enter Your Password</div>
+              </div>
+              <div class="form-group mb-5">
+                <p>Don't have an account? <a (click)="openleaveform()" class="link-info">Register here</a></p>
+              </div>
+              <div class="form-group mb-5">
+                <button (click)="login()" class="btn btn-primary" type="submit">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="userregister" class="uk-flex-top" uk-modal="bg-close: false">
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-3" uk-overflow-auto>
+    <div class="row">
+      <div class="col-12">
+        <h4><span>Create New User</span></h4>
+      </div>
+      <div class="col-12">
+        <form [formGroup]="registerFrom">
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input formControlName="name" name="name" id="name" type="text" class="form-control">
+            <div class="invalid" *ngIf="registerFrom.get('name').invalid && formsubmit" style="color: #fd3550;">Please Enter Your Name</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="mail" class="form-label">Email</label>
+            <input formControlName="mail" name="mail" id="mail" type="mail" class="form-control">
+            <div class="invalid" *ngIf="registerFrom.get('mail').invalid && formsubmit" style="color: #fd3550;">Please Enter Mail Address</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input formControlName="password" name="password" id="password" type="password" class="form-control">
+            <div class="invalid" *ngIf="registerFrom.get('password').invalid && formsubmit" style="color: #fd3550;">Please Enter Your Password</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input formControlName="cpassword" name="cpassword" id="cpassword" type="password" class="form-control">
+            <div class="invalid" *ngIf="registerFrom.get('cpassword').invalid && formsubmit" style="color: #fd3550;">Please Enter Your Confirm Password</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="" class="form-label">User Type</label>
+            <div class="col-12">
+              <div class="form-check form-check-inline">
+                <input formControlName="usertype" name="usertype" class="form-check-input" type="radio" id="user" value="user">
+                <label class="form-check-label" for="user">User</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input formControlName="usertype" name="usertype" class="form-check-input" type="radio" id="admin" value="admin">
+                <label class="form-check-label" for="admin">Admin</label>
+              </div>
+              <div class="invalid" *ngIf="registerFrom.get('usertype').invalid && formsubmit" style="color: #fd3550;">Please Select The User Type</div>
+            </div>
+          </div>
+        </form>
+        <div class="row mt-4">
+          <div class="d-flex justify-content-end">
+            <button (click)="closemodel()" class="btn btn-danger">Cancel</button>
+            <button (click)="createuser()" class="btn btn-success mx-2">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
